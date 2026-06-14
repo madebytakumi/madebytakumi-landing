@@ -126,6 +126,7 @@ export const es = {
       portal: "Catálogo digital",
       internal: "Mantenimiento o mejora",
       ai: "Automatización",
+      unsure: "No lo sé",
     },
     budget: "Etapa del proyecto",
     budgetPlaceholder: "Selecciona una etapa",
@@ -147,6 +148,14 @@ export const es = {
     note: "Completa el formulario y se abrirá WhatsApp con tu mensaje listo para enviar. El email queda como método secundario.",
     emailLabel: "Contacto por email",
     emailNote: "Úsalo para compartir briefs, documentos o contexto más detallado.",
+    errors: {
+      name: "Escribe tu nombre para saber con quién hablar.",
+      phone: "Agrega tu celular usando solo números.",
+      company: "Escribe el nombre de tu empresa.",
+      projectType: "Selecciona el tipo de proyecto o elige \"No lo sé\".",
+      budget: "Selecciona la etapa en la que está tu proyecto.",
+      companyAbout: "Cuéntame brevemente sobre tu empresa y lo que necesitas resolver.",
+    },
   },
   footer: {
     tagline: "Human craftsmanship. AI acceleration.",

@@ -152,6 +152,52 @@ const image = "/og.svg";
         document.querySelector("#home")?.scrollIntoView({ behavior: "smooth", block: "start" });
       });
 
+      function getFieldControl(form, name) {
+        return form.elements.namedItem(name);
+      }
+
+      function getFieldValue(form, name) {
+        return String(new FormData(form).get(name) || "").trim();
+      }
+
+      function getFieldError(form, name) {
+        return form.querySelector(`[data-field-error="${name}"]`);
+      }
+
+      function getFieldVisualControl(form, name) {
+        const control = getFieldControl(form, name);
+        if (control instanceof HTMLInputElement && control.type === "hidden") {
+          return control.closest("[data-custom-select]")?.querySelector("[data-select-trigger]");
+        }
+        return control instanceof HTMLElement ? control : null;
+      }
+
+      function showFieldError(form, name, message) {
+        const error = getFieldError(form, name);
+        const control = getFieldVisualControl(form, name);
+        if (error) {
+          error.textContent = message;
+          error.classList.remove("hidden");
+        }
+        control?.classList.add("border-accent");
+        control?.setAttribute("aria-invalid", "true");
+      }
+
+      function clearFieldError(form, name) {
+        const error = getFieldError(form, name);
+        const control = getFieldVisualControl(form, name);
+        error?.classList.add("hidden");
+        control?.classList.remove("border-accent");
+        control?.removeAttribute("aria-invalid");
+      }
+
+      document.querySelectorAll("[data-numeric-only]").forEach((input) => {
+        input.addEventListener("input", () => {
+          if (!(input instanceof HTMLInputElement)) return;
+          input.value = input.value.replace(/\D/g, "");
+        });
+      });
+
       const customSelects = [...document.querySelectorAll("[data-custom-select]")];
       const closeSelect = (select) => {
         const trigger = select.querySelector("[data-select-trigger]");
@@ -186,8 +232,11 @@ const image = "/og.svg";
           label.textContent = option.textContent.trim();
           label.setAttribute("data-i18n", option.getAttribute("data-i18n") || "");
           trigger?.classList.remove("text-muted", "border-accent");
+          trigger?.removeAttribute("aria-invalid");
           trigger?.classList.add("text-foreground");
           options.forEach((item) => item.setAttribute("aria-selected", String(item === option)));
+          const form = input.closest("form");
+          if (form instanceof HTMLFormElement) clearFieldError(form, input.name);
           closeSelect(select);
           trigger?.focus();
         };
@@ -237,22 +286,35 @@ const image = "/og.svg";
         event.preventDefault();
 
         const form = event.currentTarget;
-        if (!(form instanceof HTMLFormElement) || !form.reportValidity()) return;
+        if (!(form instanceof HTMLFormElement)) return;
 
-        const missingSelect = customSelects.find((select) => {
-          if (!form.contains(select)) return false;
-          const input = select.querySelector("[data-select-input]");
-          return !input?.value;
+        const lang = document.documentElement.lang || "es";
+        const copy = dictionary[lang] || dictionary.es;
+        const validations = [
+          ["contact_name", Boolean(getFieldValue(form, "contact_name")), copy.cta.errors.name],
+          ["phone", /^\d+$/.test(getFieldValue(form, "phone")), copy.cta.errors.phone],
+          ["company", Boolean(getFieldValue(form, "company")), copy.cta.errors.company],
+          ["project_type", Boolean(getFieldValue(form, "project_type")), copy.cta.errors.projectType],
+          ["project_stage", Boolean(getFieldValue(form, "project_stage")), copy.cta.errors.budget],
+          ["company_about", Boolean(getFieldValue(form, "company_about")), copy.cta.errors.companyAbout],
+        ];
+
+        let firstInvalidControl = null;
+        validations.forEach(([name, isValid, message]) => {
+          if (isValid) {
+            clearFieldError(form, name);
+            return;
+          }
+          showFieldError(form, name, message);
+          firstInvalidControl ||= getFieldVisualControl(form, name);
         });
-        if (missingSelect) {
-          missingSelect.querySelector("[data-select-trigger]")?.classList.add("border-accent");
-          missingSelect.querySelector("[data-select-trigger]")?.focus();
+
+        if (firstInvalidControl) {
+          firstInvalidControl.focus();
           return;
         }
 
         const formData = new FormData(form);
-        const lang = document.documentElement.lang || "es";
-        const copy = dictionary[lang] || dictionary.es;
         const whatsappNumber = form.dataset.whatsappNumber;
         if (!whatsappNumber) return;
 
@@ -280,8 +342,16 @@ const image = "/og.svg";
         ].join("\n");
 
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-        const opened = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-        if (!opened) window.location.href = whatsappUrl;
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      });
+
+      document.querySelectorAll("[data-whatsapp-form] input, [data-whatsapp-form] textarea").forEach((control) => {
+        control.addEventListener("input", () => {
+          const form = control.closest("form");
+          if (form instanceof HTMLFormElement && (control instanceof HTMLInputElement || control instanceof HTMLTextAreaElement)) {
+            clearFieldError(form, control.name);
+          }
+        });
       });
 
       inView(".reveal", ({ target }) => {

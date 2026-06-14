@@ -19,7 +19,7 @@ const emailSubject = encodeURIComponent("Proyecto para madebytakumi");
     </div>
 
     <div class="grid gap-5">
-      <form class="grid gap-5" data-whatsapp-form data-whatsapp-number={whatsappNumber}>
+      <form class="grid gap-5" novalidate data-whatsapp-form data-whatsapp-number={whatsappNumber}>
         <div class="grid gap-5 sm:grid-cols-2">
           <label class="grid gap-2 text-sm font-medium">
             <span data-i18n="cta.name">{es.cta.name}</span>
@@ -32,6 +32,7 @@ const emailSubject = encodeURIComponent("Proyecto para madebytakumi");
               placeholder={es.cta.namePlaceholder}
               data-i18n-placeholder="cta.namePlaceholder"
             />
+            <span class="hidden text-xs leading-5 text-accent" data-field-error="contact_name" data-i18n="cta.errors.name">{es.cta.errors.name}</span>
           </label>
           <label class="grid gap-2 text-sm font-medium">
             <span data-i18n="cta.phone">{es.cta.phone}</span>
@@ -39,11 +40,15 @@ const emailSubject = encodeURIComponent("Proyecto para madebytakumi");
               class="min-h-12 rounded-2xl border hairline bg-background px-4 text-base text-foreground outline-none transition placeholder:text-muted/70 focus:border-accent"
               name="phone"
               type="tel"
+              inputmode="numeric"
+              pattern="[0-9]+"
               autocomplete="tel"
               required
               placeholder={es.cta.phonePlaceholder}
               data-i18n-placeholder="cta.phonePlaceholder"
+              data-numeric-only
             />
+            <span class="hidden text-xs leading-5 text-accent" data-field-error="phone" data-i18n="cta.errors.phone">{es.cta.errors.phone}</span>
           </label>
         </div>
 
@@ -58,6 +63,7 @@ const emailSubject = encodeURIComponent("Proyecto para madebytakumi");
             placeholder={es.cta.companyPlaceholder}
             data-i18n-placeholder="cta.companyPlaceholder"
           />
+          <span class="hidden text-xs leading-5 text-accent" data-field-error="company" data-i18n="cta.errors.company">{es.cta.errors.company}</span>
         </label>
 
         <div class="grid gap-5 sm:grid-cols-2">
@@ -84,9 +90,11 @@ const emailSubject = encodeURIComponent("Proyecto para madebytakumi");
                   <button type="button" class="custom-option" role="option" data-select-option data-value="portal" data-i18n="cta.options.portal">{es.cta.options.portal}</button>
                   <button type="button" class="custom-option" role="option" data-select-option data-value="internal" data-i18n="cta.options.internal">{es.cta.options.internal}</button>
                   <button type="button" class="custom-option" role="option" data-select-option data-value="ai" data-i18n="cta.options.ai">{es.cta.options.ai}</button>
+                  <button type="button" class="custom-option" role="option" data-select-option data-value="unsure" data-i18n="cta.options.unsure">{es.cta.options.unsure}</button>
                 </div>
               </div>
             </div>
+            <span class="hidden text-xs leading-5 text-accent" data-field-error="project_type" data-i18n="cta.errors.projectType">{es.cta.errors.projectType}</span>
           </div>
           <div class="grid gap-2 text-sm font-medium">
             <span data-i18n="cta.budget">{es.cta.budget}</span>
@@ -115,6 +123,7 @@ const emailSubject = encodeURIComponent("Proyecto para madebytakumi");
                 </div>
               </div>
             </div>
+            <span class="hidden text-xs leading-5 text-accent" data-field-error="project_stage" data-i18n="cta.errors.budget">{es.cta.errors.budget}</span>
           </div>
         </div>
 
@@ -127,6 +136,7 @@ const emailSubject = encodeURIComponent("Proyecto para madebytakumi");
             placeholder={es.cta.companyAboutPlaceholder}
             data-i18n-placeholder="cta.companyAboutPlaceholder"
           ></textarea>
+          <span class="hidden text-xs leading-5 text-accent" data-field-error="company_about" data-i18n="cta.errors.companyAbout">{es.cta.errors.companyAbout}</span>
         </label>
 
         <button

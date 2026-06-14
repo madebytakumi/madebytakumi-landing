@@ -126,6 +126,7 @@ export const en = {
       portal: "Digital catalog",
       internal: "Maintenance or improvement",
       ai: "Automation",
+      unsure: "Not sure yet",
     },
     budget: "Project stage",
     budgetPlaceholder: "Select a stage",
@@ -147,6 +148,14 @@ export const en = {
     note: "Complete the form and WhatsApp will open with your message ready to send. Email remains available as a secondary option.",
     emailLabel: "Email contact",
     emailNote: "Use it to share briefs, documents or more detailed context.",
+    errors: {
+      name: "Enter your name so I know who to contact.",
+      phone: "Add your phone number using digits only.",
+      company: "Enter your company name.",
+      projectType: "Select a project type or choose \"Not sure yet\".",
+      budget: "Select the current stage of your project.",
+      companyAbout: "Briefly tell me about your company and what you need to solve.",
+    },
   },
   footer: {
     tagline: "Human craftsmanship. AI acceleration.",
