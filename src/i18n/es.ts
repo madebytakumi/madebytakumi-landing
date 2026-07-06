@@ -169,3 +169,18 @@ export const es = {
     language: "Cambiar idioma",
   },
 } as const;
+
+// `es` is the source of truth for the dictionary shape. `Widen` collapses the
+// `as const` literal types back to primitives and turns readonly tuples/arrays
+// into element arrays, so `Dictionary` describes structure without pinning exact
+// strings or array lengths. `en` is typed against this so any drift (missing,
+// extra or wrongly-typed key) is a compile error. See CLAUDE.md > i18n.
+type Widen<T> =
+  T extends string ? string :
+  T extends number ? number :
+  T extends boolean ? boolean :
+  T extends readonly (infer U)[] ? Widen<U>[] :
+  T extends object ? { [K in keyof T]: Widen<T[K]> } :
+  T;
+
+export type Dictionary = Widen<typeof es>;

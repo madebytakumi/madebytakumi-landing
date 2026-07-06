@@ -52,6 +52,10 @@ const image = "/og.svg";
     </button>
     <slot />
     <script>
+      // @ts-nocheck — this inline browser script predates `astro check` and is
+      // intentionally untyped (plain DOM JS). Quarantined so `npm run check`
+      // stays green and can enforce the ES/EN i18n dictionary parity that is its
+      // actual purpose. See CLAUDE.md.
       import { languages } from "@/i18n";
       import { animate, inView, stagger } from "motion";
 

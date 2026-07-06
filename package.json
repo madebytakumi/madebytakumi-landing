@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "check": "astro check",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -23,9 +24,11 @@
     "motion": "^12.40.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.15",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "typescript": "^6.0.3"
   },
   "overrides": {
     "esbuild": "^0.28.1"

@@ -1,4 +1,6 @@
-export const en = {
+import type { Dictionary } from "./es";
+
+export const en: Dictionary = {
   meta: {
     title: "madebytakumi | Human craftsmanship. AI acceleration.",
     description:
@@ -168,4 +170,4 @@ export const en = {
   controls: {
     language: "Change language",
   },
-} as const;
+};
