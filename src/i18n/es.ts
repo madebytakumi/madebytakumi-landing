@@ -31,21 +31,18 @@ export const es = {
     intro:
       "Trabajo seleccionado para mostrar el rango entre interfaces orientadas a conversión, arquitectura backend resiliente y flujos de IA prácticos.",
     view: "Ver sitio web",
+    soon: "Próximamente",
+    soonNote: "Nuevo proyecto en construcción.",
     items: [
+      {
+        title: "Glyvo",
+        description: "PWA para el seguimiento personal de salud y diabetes: glucosa, comidas, insulina y medicamentos, con reportes claros.",
+        keywords: ["PWA", "Health Tech", "Data Visualization", "Supabase"],
+      },
       {
         title: "Exorno",
         description: "Landing page premium para una empresa fabricante de cabinas de elevador.",
         keywords: ["Lead Generation", "Responsive Design", "Business Website", "Conversion Focused"],
-      },
-      {
-        title: "Real-Time Booking API",
-        description: "Arquitectura backend para sistemas de reservación de alta demanda.",
-        keywords: ["System Design", "Backend Engineering", "Scalability", "Architecture"],
-      },
-      {
-        title: "AI Workflow Demo",
-        description: "Automatización de procesos empresariales impulsados por IA.",
-        keywords: ["Automation", "AI", "Productivity", "Integrations"],
       },
     ],
   },

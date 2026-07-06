@@ -33,21 +33,18 @@ export const en: Dictionary = {
     intro:
       "Work selected to show the range between conversion-focused interfaces, resilient backend architecture and practical AI workflows.",
     view: "View website",
+    soon: "Coming soon",
+    soonNote: "New project in the works.",
     items: [
+      {
+        title: "Glyvo",
+        description: "Personal health and diabetes tracking PWA: glucose, meals, insulin and medication, with clear reports.",
+        keywords: ["PWA", "Health Tech", "Data Visualization", "Supabase"],
+      },
       {
         title: "Exorno",
         description: "Premium landing page for an elevator cabin manufacturing company.",
         keywords: ["Lead Generation", "Responsive Design", "Business Website", "Conversion Focused"],
-      },
-      {
-        title: "Real-Time Booking API",
-        description: "Backend architecture for high-demand booking systems.",
-        keywords: ["System Design", "Backend Engineering", "Scalability", "Architecture"],
-      },
-      {
-        title: "AI Workflow Demo",
-        description: "AI-powered automation for business processes.",
-        keywords: ["Automation", "AI", "Productivity", "Integrations"],
       },
     ],
   },
