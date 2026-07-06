@@ -3,53 +3,131 @@ import Button from "@/components/Button.astro";
 import { es } from "@/i18n/es";
 ---
 
-<section id="home" class="container-shell min-h-dvh pt-24 sm:pt-40">
-  <div class="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+<section id="home" class="container-shell grid min-h-svh content-center pt-24 pb-12 sm:pt-28">
+  <div class="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
     <div class="reveal">
       <p class="mb-6 text-xs font-semibold uppercase tracking-[0.32em] text-accent" data-i18n="hero.eyebrow">{es.hero.eyebrow}</p>
-      <h1 class="text-balance whitespace-pre-line text-6xl font-semibold leading-[0.92] tracking-[-0.07em] sm:text-7xl lg:text-8xl" data-i18n="hero.headline">{es.hero.headline}</h1>
-      <p class="mt-8 max-w-2xl text-2xl leading-tight tracking-[-0.035em] text-foreground/90 sm:text-3xl" data-i18n="hero.subheadline">{es.hero.subheadline}</p>
-      <p class="mt-6 max-w-xl text-base leading-8 text-muted sm:text-lg" data-i18n="hero.body">{es.hero.body}</p>
-      <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+      <h1 class="text-balance whitespace-pre-line text-6xl font-semibold leading-[0.92] tracking-[-0.07em] sm:text-7xl" data-i18n="hero.headline">{es.hero.headline}</h1>
+      <p class="mt-7 max-w-2xl text-2xl leading-tight tracking-[-0.035em] text-foreground/90 sm:text-3xl" data-i18n="hero.subheadline">{es.hero.subheadline}</p>
+      <p class="mt-5 max-w-xl text-base leading-8 text-muted sm:text-lg" data-i18n="hero.body">{es.hero.body}</p>
+      <div class="mt-9 flex flex-col gap-3 sm:flex-row">
         <Button href="#contact" label={es.hero.primary} keyName="hero.primary" />
         <Button href="#projects" variant="secondary" label={es.hero.secondary} keyName="hero.secondary" />
       </div>
     </div>
-    <div class="reveal relative min-h-[420px] overflow-hidden rounded-[2rem] border hairline bg-surface/60 p-6 shadow-[var(--shadow-soft)] sm:min-h-[560px] sm:p-10">
-      <div class="absolute inset-0 bg-[linear-gradient(90deg,var(--color-line)_1px,transparent_1px),linear-gradient(180deg,var(--color-line)_1px,transparent_1px)] bg-[size:48px_48px] opacity-40"></div>
-      <div class="relative flex h-full min-h-[372px] flex-col justify-between sm:min-h-[480px]">
-        <div class="flex justify-between text-xs uppercase tracking-[0.28em] text-muted">
-          <span>madebytakumi</span>
-          <span>01</span>
-        </div>
-        <div class="mx-auto flex items-center gap-6 sm:gap-8">
-          <div class="h-64 w-px bg-gradient-to-b from-transparent via-foreground/20 to-transparent sm:h-72"></div>
-          <div class="relative grid size-44 place-items-center rounded-[2.2rem] bg-foreground p-5 shadow-[0_28px_90px_rgba(11,11,11,0.22)] sm:size-56 sm:rounded-[2.8rem] sm:p-7">
-            <div class="absolute inset-0 rounded-[inherit] bg-[radial-gradient(circle_at_35%_20%,rgba(245,245,243,0.13),transparent_42%),linear-gradient(145deg,rgba(245,245,243,0.08),transparent_48%)]"></div>
-            <div class="absolute -inset-5 rounded-[3.5rem] border border-accent/20 opacity-70"></div>
-            <div class="absolute -right-4 top-8 h-24 w-8 rounded-full bg-accent/80 blur-[18px]"></div>
-            <img
-              src="/favicon.svg"
-              alt=""
-              aria-hidden="true"
-              class="relative size-full rounded-[1.55rem] object-contain sm:rounded-[2rem]"
-              width="224"
-              height="224"
-              loading="eager"
-              decoding="async"
-            />
-          </div>
-          <div class="h-64 w-px bg-gradient-to-b from-transparent via-foreground/20 to-transparent sm:h-72"></div>
-        </div>
-        <div class="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-end">
-          <p class="max-w-xs text-lg leading-7 tracking-[-0.02em]" data-i18n="hero.visual">{es.hero.visual}</p>
-          <div class="flex gap-2">
-            <span class="size-2 rounded-full bg-accent"></span>
-            <span class="size-2 rounded-full bg-foreground/25"></span>
-            <span class="size-2 rounded-full bg-foreground/25"></span>
-          </div>
-        </div>
+
+    <!-- Immersive interactive mark: enso (human brushstroke) + precise geometry (AI),
+         with pointer-driven 3D tilt / layered parallax. No frame, no dependencies. -->
+    <div class="reveal hero-stage" data-hero-stage aria-hidden="true">
+      <div class="hero-stage-inner" data-hero-tilt>
+        <span class="hero-layer hero-glow" data-depth="6"></span>
+        <span class="hero-layer hero-dots" data-depth="10"></span>
+
+        <svg class="hero-layer hero-enso" data-depth="26" viewBox="0 0 300 300" fill="none" aria-hidden="true">
+          <!-- precise geometric ring (AI) -->
+          <circle class="hero-ring" cx="150" cy="150" r="112" stroke="var(--color-foreground)" stroke-opacity="0.14" stroke-width="1" />
+          <!-- hand-drawn enso brushstroke (human craft) -->
+          <path
+            class="hero-brush"
+            pathLength="1"
+            d="M203 63 C169 44 121 44 88 71 C50 102 44 163 74 205 C104 246 167 256 212 231 C247 211 264 168 254 132"
+            stroke="var(--color-accent)"
+            stroke-width="12"
+            stroke-linecap="round"
+          />
+        </svg>
+
+        <svg class="hero-layer hero-mark" data-depth="46" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="var(--color-foreground)" />
+          <path d="M18 18H46L42.5 22H22V48H18V18Z" fill="var(--color-background)" />
+          <path d="M30 27H43L41.5 31H28.8L30 27Z" fill="var(--color-background)" />
+          <path d="M32 34V29H35V36.5H38.5V40H35V45H31.5V38.5L25.5 47H43L46 51H23V47L32 34Z" fill="var(--color-background)" />
+        </svg>
+
+        <span class="hero-layer hero-seal" data-depth="60"></span>
       </div>
+      <p class="hero-caption text-lg leading-7 tracking-[-0.02em] text-muted" data-i18n="hero.visual">{es.hero.visual}</p>
     </div>
   </div>
 </section>
+
+<script>
+  type Layer = { el: HTMLElement; depth: number };
+
+  const stage = document.querySelector<HTMLElement>("[data-hero-stage]");
+  const tilt = document.querySelector<HTMLElement>("[data-hero-tilt]");
+
+  if (stage && tilt) {
+    const layers: Layer[] = [...tilt.querySelectorAll<HTMLElement>(".hero-layer")].map((el) => ({
+      el,
+      depth: Number(el.dataset.depth ?? 0),
+    }));
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const finePointer = window.matchMedia("(pointer: fine)");
+
+    // Target and current tilt, normalized to -1..1 (lerped for smoothness).
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let raf = 0;
+    let auto = 0;
+
+    const render = () => {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+
+      tilt.style.transform = `rotateX(${currentY * -7}deg) rotateY(${currentX * 9}deg)`;
+      for (const { el, depth } of layers) {
+        el.style.transform = `translate3d(${currentX * depth}px, ${currentY * depth}px, ${depth}px)`;
+      }
+      raf = requestAnimationFrame(render);
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      const rect = stage.getBoundingClientRect();
+      targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+    };
+
+    const onLeave = () => {
+      targetX = 0;
+      targetY = 0;
+    };
+
+    const startAuto = () => {
+      const loop = (t: number) => {
+        targetX = Math.sin(t / 2200) * 0.6;
+        targetY = Math.cos(t / 2600) * 0.45;
+        auto = requestAnimationFrame(loop);
+      };
+      auto = requestAnimationFrame(loop);
+    };
+
+    const enable = () => {
+      cancelAnimationFrame(raf);
+      cancelAnimationFrame(auto);
+      stage.removeEventListener("pointermove", onPointerMove);
+      stage.removeEventListener("pointerleave", onLeave);
+
+      if (reduceMotion.matches) {
+        tilt.style.transform = "";
+        for (const { el } of layers) el.style.transform = "";
+        return;
+      }
+
+      raf = requestAnimationFrame(render);
+      if (finePointer.matches) {
+        stage.addEventListener("pointermove", onPointerMove);
+        stage.addEventListener("pointerleave", onLeave);
+      } else {
+        startAuto();
+      }
+    };
+
+    enable();
+    reduceMotion.addEventListener("change", enable);
+    finePointer.addEventListener("change", enable);
+  }
+</script>

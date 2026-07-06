@@ -180,6 +180,107 @@ a {
   transform: none;
 }
 
+/* --- Hero interactive mark: enso (human brushstroke) + precise geometry (AI),
+   with pointer-driven 3D tilt / layered parallax. Driven by the script in Hero.astro. --- */
+.hero-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.25rem;
+  min-height: 420px;
+  perspective: 1100px;
+}
+
+@media (min-width: 640px) {
+  .hero-stage {
+    min-height: 520px;
+  }
+}
+
+.hero-stage-inner {
+  position: relative;
+  width: min(78%, 23rem);
+  aspect-ratio: 1;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.hero-layer {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  will-change: transform;
+}
+
+.hero-glow {
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--color-accent) 24%, transparent), transparent 62%);
+  filter: blur(8px);
+}
+
+.hero-dots {
+  background-image: radial-gradient(color-mix(in srgb, var(--color-foreground) 24%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.5;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 38%, transparent 72%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 38%, transparent 72%);
+}
+
+.hero-enso {
+  overflow: visible;
+}
+
+.hero-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hero-ring-in 1s ease-out 1.4s both;
+}
+
+@keyframes hero-ring-in {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.hero-brush {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: enso-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+@keyframes enso-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-mark {
+  width: 34%;
+  height: 34%;
+  filter: drop-shadow(0 26px 60px rgba(11, 11, 11, 0.3));
+}
+
+.hero-seal {
+  inset: 11% 15% auto auto;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-accent) 16%, transparent);
+}
+
+.hero-caption {
+  max-width: 20rem;
+  text-align: center;
+}
+
 .nav-solid {
   background: color-mix(in srgb, var(--color-background) 88%, transparent);
   border-color: var(--color-line);
