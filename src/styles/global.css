@@ -343,6 +343,12 @@ a {
     0 0 0 0.35rem rgba(178, 34, 34, 0.08);
 }
 
+/* Scroll-spy: active mobile-menu item (section in view) */
+.mobile-menu-link[aria-current],
+.mobile-menu-link[aria-current] svg {
+  color: var(--color-accent);
+}
+
 .custom-option {
   width: 100%;
   border-radius: 0.875rem;

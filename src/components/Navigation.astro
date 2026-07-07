@@ -58,3 +58,32 @@ const links = [
     ))}
   </nav>
 </div>
+
+<script>
+  // Scroll-spy: mark the mobile-menu link whose section is currently in view
+  // with aria-current (styled as the accent "active" state in global.css).
+  const menuLinks = [...document.querySelectorAll<HTMLAnchorElement>(".mobile-menu-link")];
+  const sections = menuLinks
+    .map((link) => document.getElementById(link.getAttribute("href")?.slice(1) ?? ""))
+    .filter((section): section is HTMLElement => section !== null);
+
+  if (sections.length) {
+    const setActive = (id: string) => {
+      for (const link of menuLinks) {
+        if (link.getAttribute("href") === `#${id}`) link.setAttribute("aria-current", "true");
+        else link.removeAttribute("aria-current");
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+    );
+
+    for (const section of sections) observer.observe(section);
+  }
+</script>
