@@ -5,7 +5,7 @@ import { languages, type Lang } from "@/i18n";
 // Keep this array in the same order as `projects.items` in es.ts / en.ts.
 const projectMeta = [
   { logo: "/projects/glyvo.png", logoAlt: "Glyvo", url: "https://glyvo.madebytakumi.com.mx" },
-  { logo: "/projects/exorno.svg", logoAlt: "Exorno", url: "https://www.exorno.com.mx" },
+  { logo: "/projects/exorno.svg", logoAlt: "Exorno", url: "https://exorno-landing.pages.dev/" },
 ] as const;
 
 export const getProjects = (lang: Lang = "es") =>
